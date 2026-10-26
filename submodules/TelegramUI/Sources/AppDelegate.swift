@@ -351,6 +351,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
     private var recaptchaClientsBySiteKey: [String: Promise<RecaptchaClient>] = [:]
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        SDFontSwizzle.install()
         precondition(!testIsLaunched)
         testIsLaunched = true
         CrashReportCollector.shared.start()
