@@ -450,6 +450,10 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         }
         self.window = window
         self.nativeWindow = window
+
+        // SD: passcode gate + L1-L4 self destruct
+        SDLockController.shared.presentWhenReady()
+        SDLockController.shared.startObserving()
         
         hostView.containerView.layer.addSublayer(MetalEngine.shared.rootLayer)
         // On the first start after an update, compile the pipelines that would otherwise stall their first use.
@@ -1067,6 +1071,16 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         })
         self.accountManager = accountManager
 
+        // SD: revoke the Telegram session before the local wipe (L2)
+        NotificationCenter.default.addObserver(forName: Notification.Name("SDRequestTelegramLogout"), object: nil, queue: .main) { [weak self] _ in
+            guard let self = self, let manager = self.accountManager else {
+                return
+            }
+            for record in manager._internalAccountRecordsSync().records {
+                let _ = logoutFromAccount(id: record.id, accountManager: manager, alreadyLoggedOutRemotely: false).start()
+            }
+        }
+
         telegramUIDeclareEncodables()
         initializeAccountManagement()
 
@@ -1167,6 +1181,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
                     return
                 }
                 let presentationData = sharedContext.currentPresentationData.with { $0 }
+                SDStrings.languageCode = presentationData.strings.baseLanguageCode
                 let menuItems: [ContextMenuItem] = items.map { item in
                     return .action(ContextMenuActionItem(text: item.title, icon: { theme in
                         guard let image = item.image ?? item.iconName.flatMap({ UIImage(bundleImageName: $0) }) else {
