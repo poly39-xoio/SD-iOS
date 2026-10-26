@@ -470,7 +470,7 @@ public func makeDefaultDayPresentationTheme(extendingThemeReference: Presentatio
     )
     
     let list = PresentationThemeList(
-        blocksBackgroundColor: UIColor(rgb: 0xefeff4),
+        blocksBackgroundColor: UIColor(rgb: 0xE9EFF3),
         modalBlocksBackgroundColor: UIColor(rgb: 0xefeff4),
         plainBackgroundColor: UIColor(rgb: 0xE9EFF3),
         modalPlainBackgroundColor: UIColor(rgb: 0xffffff),
@@ -485,7 +485,7 @@ public func makeDefaultDayPresentationTheme(extendingThemeReference: Presentatio
         itemModalBlocksBackgroundColor: UIColor(rgb: 0xffffff),
         itemHighlightedBackgroundColor: UIColor(rgb: 0xe5e5ea),
         itemBlocksSeparatorColor: UIColor(rgb: 0xc8c7cc),
-        itemPlainSeparatorColor: UIColor(rgb: 0xc8c7cc),
+        itemPlainSeparatorColor: UIColor(rgb: 0xDCE5EA),
         disclosureArrowColor: UIColor(rgb: 0xbab9be),
         sectionHeaderTextColor: UIColor(rgb: 0x6d6d72),
         freeTextColor: UIColor(rgb: 0x6d6d72),
@@ -539,7 +539,7 @@ public func makeDefaultDayPresentationTheme(extendingThemeReference: Presentatio
     let chatList = PresentationThemeChatList(
         backgroundColor: UIColor(rgb: 0xffffff),
         itemSeparatorColor: UIColor(rgb: 0xc8c7cc),
-        itemBackgroundColor: UIColor(rgb: 0xffffff),
+        itemBackgroundColor: UIColor(rgb: 0xF7FAFC),
         pinnedItemBackgroundColor: UIColor(rgb: 0xf7f7f7),
         itemHighlightedBackgroundColor: UIColor(rgb: 0xe5e5ea),
         pinnedItemHighlightedBackgroundColor: UIColor(rgb: 0xe5e5ea),

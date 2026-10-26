@@ -23,6 +23,9 @@ final class SDDemo {
         if ProcessInfo.processInfo.arguments.contains("--sd-demo-chat") {
             nav.pushViewController(SDDemoChatController(name: "Alex Chen"), animated: false)
         }
+        if ProcessInfo.processInfo.arguments.contains("--sd-demo-settings") {
+            nav.pushViewController(SDDemoSettingsController(), animated: false)
+        }
         return nav
     }
 }
@@ -238,5 +241,59 @@ final class SDDemoChatController: UIViewController {
         }
 
         self.stack.addArrangedSubview(row)
+    }
+}
+
+
+final class SDDemoSettingsController: UIViewController, UITableViewDataSource {
+    private let table = UITableView(frame: .zero, style: .insetGrouped)
+    private let sections: [(String, [(String, String)])] = [
+        ("Privacy & Security", [("Passcode", "On"), ("Self destruct", "3 wrong attempts"), ("Revoke session", "On")]),
+        ("Appearance", [("Theme", "Slate"), ("Typeface", "Huninn"), ("Icon", "Self Destruct")]),
+        ("Data", [("Export chats", "Pro"), ("Clear cache", "—")])
+    ]
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Settings"
+        self.view.backgroundColor = SDDemo.bgTop
+
+        self.table.dataSource = self
+        self.table.backgroundColor = .clear
+        self.table.separatorStyle = .none
+        self.table.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.table)
+        NSLayoutConstraint.activate([
+            self.table.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.table.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.table.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.table.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sections.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.sections[section].1.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section].0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let item = self.sections[indexPath.section].1[indexPath.row]
+        cell.textLabel?.text = item.0
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15.0)
+        cell.textLabel?.textColor = SDDemo.ink
+        cell.detailTextLabel?.text = item.1
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        cell.detailTextLabel?.textColor = SDDemo.ink.withAlphaComponent(0.55)
+        cell.backgroundColor = UIColor(red: 0xF7/255.0, green: 0xFA/255.0, blue: 0xFC/255.0, alpha: 1.0)
+        cell.selectionStyle = .none
+        return cell
     }
 }
