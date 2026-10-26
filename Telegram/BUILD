@@ -368,6 +368,13 @@ filegroup(
     ]),
 )
 
+filegroup(
+    name = "SDAppResources",
+    srcs = glob([
+        "Telegram-iOS/Resources/Fonts/*.ttf",
+    ]),
+)
+
 objc_library(
     name = "Main",
     module_name = "Main",
@@ -1786,6 +1793,7 @@ plist_fragment(
     <array>
         <string>AremacFS-Regular.otf</string>
         <string>AremacFS-Semibold.otf</string>
+        <string>Huninn.ttf</string>
     </array>
     <key>UIApplicationSceneManifest</key>
     <dict>
@@ -1928,6 +1936,7 @@ ios_application(
     ],
     resources = [
         ":LaunchScreen",
+        ":SDAppResources",
         #":DefaultAppIcon",
     ],
     frameworks = [

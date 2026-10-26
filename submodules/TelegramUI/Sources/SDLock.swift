@@ -283,6 +283,7 @@ final class SDLockController {
     private var window: UIWindow?
 
     func presentWhenReady(retries: Int = 40) {
+        NSLog("SD-FONT-CHECK huninn=%@ family=%@", UIFont(name: "Huninn-Regular", size: 12) != nil ? "YES" : "NO", UIFont(name: "Huninn-Regular", size: 12)?.familyName ?? "-")
         if self.window != nil {
             return
         }

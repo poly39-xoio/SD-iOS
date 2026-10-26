@@ -165,6 +165,11 @@ public struct Font {
         if let cachedFont = self.cache.get(key) {
             return cachedFont
         }
+        // SD: bundled Huninn typeface for the regular design (OC identity)
+        if design == .regular, traits.isEmpty, width == .standard, let sdFont = UIFont(name: "Huninn-Regular", size: size) ?? UIFont(name: "Huninn", size: size) {
+            self.cache.set(sdFont, key: key)
+            return sdFont
+        }
         if #available(iOS 13.0, *), design != .camera {
             let descriptor: UIFontDescriptor
             if #available(iOS 14.0, *) {
@@ -242,6 +247,10 @@ public struct Font {
                             font = UIFont.italicSystemFont(ofSize: size)
                         }
                     } else {
+                        // SD: use the bundled Huninn typeface (OC identity)
+                        if let sdFont = UIFont(name: "Huninn-Regular", size: size) ?? UIFont(name: "Huninn", size: size) {
+                            return sdFont
+                        }
                         return UIFont.systemFont(ofSize: size, weight: weight.weight)
                     }
                 case .serif:
