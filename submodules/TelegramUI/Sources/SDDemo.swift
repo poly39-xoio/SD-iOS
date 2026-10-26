@@ -10,6 +10,14 @@ final class SDDemo {
     static let bgBottom = UIColor(red: 0x6B/255.0, green: 0x7A/255.0, blue: 0x87/255.0, alpha: 1.0)
     static let ink = UIColor(red: 0x16/255.0, green: 0x1B/255.0, blue: 0x1D/255.0, alpha: 1.0)
 
+    static func gradientLayer() -> CAGradientLayer {
+        let layer = CAGradientLayer()
+        layer.colors = [bgTop.cgColor, bgBottom.cgColor]
+        layer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        layer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        return layer
+    }
+
     static func controller() -> UIViewController {
         let nav = UINavigationController(rootViewController: SDDemoChatListController())
         if ProcessInfo.processInfo.arguments.contains("--sd-demo-chat") {
@@ -140,6 +148,9 @@ final class SDDemoChatController: UIViewController {
         super.viewDidLoad()
         self.title = self.name
         self.view.backgroundColor = SDDemo.bgTop
+        let gradient = SDDemo.gradientLayer()
+        gradient.frame = UIScreen.main.bounds
+        self.view.layer.insertSublayer(gradient, at: 0)
 
         self.scroll.translatesAutoresizingMaskIntoConstraints = false
         self.scroll.alwaysBounceVertical = true

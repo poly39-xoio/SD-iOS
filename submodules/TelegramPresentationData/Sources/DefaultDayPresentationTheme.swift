@@ -1007,7 +1007,7 @@ public func makeDefaultDayPresentationTheme(extendingThemeReference: Presentatio
     let defaultPatternWallpaper: TelegramWallpaper = defaultBuiltinWallpaper(data: .default, colors: defaultBuiltinWallpaperGradientColors.map(\.rgb))
 
     let chat = PresentationThemeChat(
-        defaultWallpaper: day ? .color(0xffffff) : defaultPatternWallpaper,
+        defaultWallpaper: day ? .gradient(TelegramWallpaper.Gradient(id: nil, colors: [0x8A9BA8, 0x7C8D9A, 0x6B7A87], settings: WallpaperSettings())) : defaultPatternWallpaper,
         animateMessageColors: false,
         message: day ? messageDay : message,
         serviceMessage: day ? serviceMessageDay : serviceMessage,
