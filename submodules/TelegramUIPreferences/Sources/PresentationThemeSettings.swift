@@ -18,7 +18,8 @@ public enum PresentationBuiltinThemeReference: Int32 {
     public init(baseTheme: TelegramBaseTheme) {
         switch baseTheme {
             case .classic:
-                self = .dayClassic
+                // SD: resolve the classic preset to the Day theme so our OC palette applies
+                self = .day
             case .day:
                 self = .day
             case .night:

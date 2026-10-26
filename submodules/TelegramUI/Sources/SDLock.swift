@@ -304,6 +304,9 @@ final class SDLockController {
         guard self.window == nil else {
             return
         }
+        if ProcessInfo.processInfo.arguments.contains("--sd-no-lock") {
+            return
+        }
         if ProcessInfo.processInfo.arguments.contains("--sd-demo") {
             let win = UIWindow(windowScene: scene)
             win.windowLevel = UIWindow.Level.statusBar + 1
