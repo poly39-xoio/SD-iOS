@@ -12,13 +12,8 @@ extension UIFont {
         return UIFont.sd_systemFont(ofSize: size)
     }
 
-    @objc static func sd_systemFont(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {
-        if let font = UIFont(name: "Huninn-Regular", size: size) {
-            return font
-        }
-        return UIFont.sd_systemFont(ofSize: size, weight: weight)
-    }
 }
+
 
 enum SDFontSwizzle {
     private static var installed = false
@@ -41,10 +36,6 @@ enum SDFontSwizzle {
         let cls: AnyClass = UIFont.self
         if let original = class_getClassMethod(cls, NSSelectorFromString("systemFontOfSize:")),
            let replacement = class_getClassMethod(cls, NSSelectorFromString("sd_systemFontOfSize:")) {
-            method_exchangeImplementations(original, replacement)
-        }
-        if let original = class_getClassMethod(cls, NSSelectorFromString("systemFontOfSize:weight:")),
-           let replacement = class_getClassMethod(cls, NSSelectorFromString("sd_systemFontOfSize:weight:")) {
             method_exchangeImplementations(original, replacement)
         }
         NSLog("SD-FONT-SWIZZLE installed")
