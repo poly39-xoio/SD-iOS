@@ -84,3 +84,6 @@ tools/sim-watcher/dist/
 submodules/TelegramApi/Sources/SwiftPMGenerated/
 submodules/TelegramApi/ObjC/SwiftPMGenerated/
 submodules/TelegramApi/Tests/SwiftPMGenerated/
+
+# SD: real api_hash / team_id 只留在本機,不進 repo
+build-system/configuration.json
