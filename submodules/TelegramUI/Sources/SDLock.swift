@@ -304,6 +304,14 @@ final class SDLockController {
         guard self.window == nil else {
             return
         }
+        if ProcessInfo.processInfo.arguments.contains("--sd-demo") {
+            let win = UIWindow(windowScene: scene)
+            win.windowLevel = UIWindow.Level.statusBar + 1
+            self.window = win
+            win.rootViewController = SDDemo.controller()
+            win.makeKeyAndVisible()
+            return
+        }
         let win = UIWindow(windowScene: scene)
         win.windowLevel = UIWindow.Level.statusBar + 1
         win.backgroundColor = UIColor.black
@@ -461,7 +469,17 @@ final class SDLockViewController: UIViewController {
         self.view.addSubview(self.dotsView)
         self.view.addSubview(keypad)
 
+        let demoButton = UIButton(type: .system)
+        demoButton.setTitle("查看示範 / View demo", for: .normal)
+        demoButton.setTitleColor(UIColor.white.withAlphaComponent(0.75), for: .normal)
+        demoButton.titleLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .medium)
+        demoButton.translatesAutoresizingMaskIntoConstraints = false
+        demoButton.addTarget(self, action: #selector(self.showDemo), for: .touchUpInside)
+        self.view.addSubview(demoButton)
+
         NSLayoutConstraint.activate([
+            demoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            demoButton.bottomAnchor.constraint(equalTo: keypad.topAnchor, constant: -18.0),
             self.titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 80.0),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24.0),
             self.titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24.0),
@@ -488,6 +506,12 @@ final class SDLockViewController: UIViewController {
         if self.entered.count == SDLockController.passcodeLength {
             self.handleComplete()
         }
+    }
+
+    @objc private func showDemo() {
+        let nav = SDDemo.controller()
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
 
     private func updateDots() {
