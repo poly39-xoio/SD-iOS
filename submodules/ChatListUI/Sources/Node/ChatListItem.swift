@@ -2042,7 +2042,8 @@ public class ChatListItemNode: ItemListRevealOptionsItemNode {
             } else if isForumAvatar {
                 avatarClipStyle = .roundedRect
             } else {
-                avatarClipStyle = .round
+                // SD: rounded-square avatars instead of circles (OC identity)
+                avatarClipStyle = .roundedRect
             }
 
             if item.useCommunityViewLayout {
@@ -4051,6 +4052,10 @@ public class ChatListItemNode: ItemListRevealOptionsItemNode {
                 itemHeight += authorSpacing
             }
                         
+            // SD: clamp the chat row height to a compact 68pt band (OC density)
+            itemHeight = min(itemHeight, 68.0)
+            itemHeight = max(itemHeight, 60.0)
+
             let rawContentRect = CGRect(origin: CGPoint(x: 2.0, y: layoutOffset + floor(item.presentationData.fontSize.itemListBaseFontSize * 8.0 / 17.0)), size: CGSize(width: rawContentWidth, height: itemHeight - 12.0 - 9.0))
             
             let insets = ChatListItemNode.insets(first: first, last: last, firstWithHeader: firstWithHeader)
