@@ -30,6 +30,18 @@ enum SDStrings {
             "it": "Vedi demo",
             "ar": "عرض العرض التوضيحي"
         ],
+        "privacy": [
+            "en": "Privacy Policy", "zh": "隱私權政策", "zh-Hant": "隱私權政策",
+            "ja": "プライバシーポリシー", "ko": "개인정보 처리방침", "es": "Política de privacidad",
+            "fr": "Politique de confidentialité", "de": "Datenschutz", "ru": "Политика конфиденциальности",
+            "pt": "Política de privacidade", "it": "Informativa sulla privacy", "ar": "سياسة الخصوصية"
+        ],
+        "support": [
+            "en": "Support", "zh": "支援", "zh-Hant": "支援",
+            "ja": "サポート", "ko": "지원", "es": "Soporte",
+            "fr": "Assistance", "de": "Support", "ru": "Поддержка",
+            "pt": "Suporte", "it": "Assistenza", "ar": "الدعم"
+        ],
         "setup": [
             "en": "Set a 6-digit passcode",
             "zh-Hant": "設定 6 位數密碼",

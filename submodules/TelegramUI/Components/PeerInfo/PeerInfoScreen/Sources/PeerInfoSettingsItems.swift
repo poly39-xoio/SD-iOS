@@ -342,18 +342,14 @@ func settingsItems(data: PeerInfoScreenData?, context: AccountContext, presentat
         }
     }
     
-    // SD: hide Telegram support/FAQ/tips entries
-    if false {
-        items[.support]!.append(PeerInfoScreenDisclosureItem(id: 0, text: presentationData.strings.Settings_Support, icon: PresentationResourcesSettings.support, action: {
-            interaction.openSettings(.support)
-        }))
-        items[.support]!.append(PeerInfoScreenDisclosureItem(id: 1, text: presentationData.strings.Settings_FAQ, icon: PresentationResourcesSettings.faq, action: {
-            interaction.openSettings(.faq)
-        }))
-        items[.support]!.append(PeerInfoScreenDisclosureItem(id: 2, text: presentationData.strings.Settings_Tips, icon: PresentationResourcesSettings.tips, action: {
-            interaction.openSettings(.tips)
-        }))
-    }
+    // SD: our own privacy / support pages (Telegram's own rows stay hidden)
+    let sdIsEnglish = (Locale.preferredLanguages.first ?? "zh").lowercased().hasPrefix("en")
+    items[.support]!.append(PeerInfoScreenDisclosureItem(id: 10, text: sdIsEnglish ? "Privacy Policy" : "隱私權政策", icon: PresentationResourcesSettings.support, action: {
+        context.sharedContext.openExternalUrl(context: context, urlContext: .generic, url: "https://xoio.io/sd/privacy.html", forceExternal: false, presentationData: presentationData, navigationController: nil, dismissInput: {})
+    }))
+    items[.support]!.append(PeerInfoScreenDisclosureItem(id: 11, text: sdIsEnglish ? "Support" : "支援", icon: PresentationResourcesSettings.faq, action: {
+        context.sharedContext.openExternalUrl(context: context, urlContext: .generic, url: "https://xoio.io/sd/support.html", forceExternal: false, presentationData: presentationData, navigationController: nil, dismissInput: {})
+    }))
     
     var result: [(AnyHashable, [PeerInfoScreenItem])] = []
     for section in SettingsSection.allCases {
