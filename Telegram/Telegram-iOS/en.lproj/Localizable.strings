@@ -409,16 +409,16 @@
 "Tour.Text2" = "Sign in with your **own Telegram account**.\nSD never sees your password.";
 
 "Tour.Title3" = "Powerful";
-"Tour.Text3" = "**Telegram** has no limits on\nthe size of your media and chats.";
+"Tour.Text3" = "**No limits** on the size of\nyour media and chats.";
 
 "Tour.Title4" = "Secure";
-"Tour.Text4" = "**Telegram** keeps your messages\nsafe from hacker attacks.";
+"Tour.Text4" = "**Private by design** — your data\nstays with your own account.";
 
 "Tour.Title5" = "Cloud-Based";
-"Tour.Text5" = "**Telegram** lets you access your\nmessages from multiple devices.";
+"Tour.Text5" = "**Multi-device** — read your messages\nfrom any device you sign in on.";
 
 "Tour.Title6" = "Free";
-"Tour.Text6" = "**Telegram** provides free unlimited\ncloud storage for chats and media.";
+"Tour.Text6" = "**Self-destruct** — three wrong passcodes\nwipe this device for good.";
 
 "Tour.StartButton" = "Start Messaging";
 
