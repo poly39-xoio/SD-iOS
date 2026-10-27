@@ -352,6 +352,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         SDFontSwizzle.install()
+        SDDiag.start()
         precondition(!testIsLaunched)
         testIsLaunched = true
         CrashReportCollector.shared.start()

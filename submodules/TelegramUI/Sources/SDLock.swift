@@ -481,10 +481,21 @@ final class SDLockViewController: UIViewController {
         demoButton.addTarget(self, action: #selector(self.showDemo), for: .touchUpInside)
         self.view.addSubview(demoButton)
 
+        let tagLabel = UILabel()
+        tagLabel.text = "build " + sdBuildTag
+        tagLabel.font = UIFont.systemFont(ofSize: 10.0, weight: .medium)
+        tagLabel.textColor = UIColor.white.withAlphaComponent(0.35)
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(tagLabel)
+        NSLayoutConstraint.activate([
+            tagLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            tagLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10.0)
+        ])
+
         NSLayoutConstraint.activate([
             demoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             demoButton.bottomAnchor.constraint(equalTo: keypad.topAnchor, constant: -18.0),
-            self.titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 80.0),
+        self.titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 80.0),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24.0),
             self.titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24.0),
             self.dotsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),

@@ -734,7 +734,13 @@ public class GlassBackgroundView: UIView {
         
         if let innerColor = tintColor.innerColor {
             let innerBackgroundFrame = CGRect(origin: CGPoint(), size: size).insetBy(dx: tintColor.innerInset, dy: tintColor.innerInset)
-            let innerBackgroundRadius = min(innerBackgroundFrame.width, innerBackgroundFrame.height) * 0.5
+            let innerBackgroundRadius: CGFloat
+            switch shape {
+            case let .roundedRect(cornerRadius):
+                innerBackgroundRadius = min(cornerRadius, min(innerBackgroundFrame.width, innerBackgroundFrame.height) * 0.5)
+            case let .customRoundedRect(cornerRadii):
+                innerBackgroundRadius = min(max(cornerRadii.topLeft, cornerRadii.topRight), min(innerBackgroundFrame.width, innerBackgroundFrame.height) * 0.5)
+            }
             
             let innerBackgroundView: UIView
             var innerBackgroundTransition = transition

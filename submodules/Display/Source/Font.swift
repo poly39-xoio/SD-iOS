@@ -166,9 +166,24 @@ public struct Font {
             return cachedFont
         }
         // SD: bundled Huninn typeface for the regular design (OC identity)
-        if design == .regular, traits.isEmpty, width == .standard, let sdFont = UIFont(name: "Huninn-Regular", size: size) ?? UIFont(name: "Huninn", size: size) {
-            self.cache.set(sdFont, key: key)
-            return sdFont
+        if design == .regular, traits.isEmpty, width == .standard {
+            let latinName: String
+            switch weight {
+            case .medium, .semibold: latinName = "AvenirNext-DemiBold"
+            case .bold, .heavy: latinName = "AvenirNext-Bold"
+            default: latinName = "AvenirNext-Regular"
+            }
+            let base = UIFont(name: latinName, size: size) ?? UIFont.systemFont(ofSize: size, weight: weight.weight)
+            if let huninn = UIFont(name: "Huninn-Regular", size: size) {
+                let descriptor = base.fontDescriptor.addingAttributes([
+                    UIFontDescriptor.AttributeName.cascadeList: [huninn.fontDescriptor]
+                ])
+                let font = UIFont(descriptor: descriptor, size: size)
+                self.cache.set(font, key: key)
+                return font
+            }
+            self.cache.set(base, key: key)
+            return base
         }
         if #available(iOS 13.0, *), design != .camera {
             let descriptor: UIFontDescriptor

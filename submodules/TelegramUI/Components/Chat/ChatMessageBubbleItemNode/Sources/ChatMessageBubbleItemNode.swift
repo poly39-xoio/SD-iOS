@@ -3430,7 +3430,7 @@ public class ChatMessageBubbleItemNode: ChatMessageItemView, ChatMessagePreviewI
                                     bottomLeft = .none(tail: false)
                                 case let .None(tailStatus):
                                     if case .Incoming = tailStatus {
-                                        bottomLeft = .none(tail: true)
+                                        bottomLeft = .none(tail: false)
                                     } else {
                                         bottomLeft = .none(tail: false)
                                     }
@@ -3447,7 +3447,7 @@ public class ChatMessageBubbleItemNode: ChatMessageItemView, ChatMessagePreviewI
                                     bottomRight = .mergedBubble
                                 case let .None(tailStatus):
                                     if case .Outgoing = tailStatus {
-                                        bottomRight = .none(tail: true)
+                                        bottomRight = .none(tail: false)
                                     } else {
                                         bottomRight = .none(tail: false)
                                     }
@@ -4005,7 +4005,11 @@ public class ChatMessageBubbleItemNode: ChatMessageItemView, ChatMessagePreviewI
         if hideBackground {
             backgroundType = .none
         } else if !incoming {
-            backgroundType = .outgoing(mergeType)
+            if !item.presentationData.chatBubbleCorners.hasTails {
+                backgroundType = .outgoing(.Extracted)
+            } else {
+                backgroundType = .outgoing(mergeType)
+            }
         } else {
             if case let .messageOptions(_, _, info) = item.associatedData.subject, case let .link(link) = info, link.isCentered {
                 backgroundType = .incoming(.Extracted)
