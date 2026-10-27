@@ -16,6 +16,20 @@ enum SDStrings {
     }
 
     private static let table: [String: [String: String]] = [
+        "demo": [
+            "en": "View demo",
+            "zh": "查看示範",
+            "zh-Hant": "查看示範",
+            "ja": "デモを見る",
+            "ko": "데모 보기",
+            "es": "Ver demo",
+            "fr": "Voir la démo",
+            "de": "Demo ansehen",
+            "ru": "Посмотреть демо",
+            "pt": "Ver demo",
+            "it": "Vedi demo",
+            "ar": "عرض العرض التوضيحي"
+        ],
         "setup": [
             "en": "Set a 6-digit passcode",
             "zh-Hant": "設定 6 位數密碼",
@@ -474,7 +488,7 @@ final class SDLockViewController: UIViewController {
         self.view.addSubview(keypad)
 
         let demoButton = UIButton(type: .system)
-        demoButton.setTitle("查看示範 / View demo", for: .normal)
+        demoButton.setTitle(SDStrings.t("demo"), for: .normal)
         demoButton.setTitleColor(UIColor.white.withAlphaComponent(0.75), for: .normal)
         demoButton.titleLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .medium)
         demoButton.translatesAutoresizingMaskIntoConstraints = false
