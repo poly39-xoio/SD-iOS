@@ -403,10 +403,10 @@
 
 // Tour
 "Tour.Title1" = "SD";
-"Tour.Text1" = "Private messaging with **self-destruct**.\nThree wrong passcodes and the data is gone.";
+"Tour.Text1" = "Private messaging with **self-destruct**.\nSign in with your own Telegram account — we never see your password.";
 
-"Tour.Title2" = "Fast";
-"Tour.Text2" = "**Telegram** delivers messages\nfaster than any other application.";
+"Tour.Title2" = "Your account";
+"Tour.Text2" = "Sign in with your **own Telegram account**.\nSD never sees your password.";
 
 "Tour.Title3" = "Powerful";
 "Tour.Text3" = "**Telegram** has no limits on\nthe size of your media and chats.";
