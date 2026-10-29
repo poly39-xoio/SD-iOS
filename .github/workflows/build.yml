@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-15
 
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,14 @@ jobs:
       - name: Set active Xcode path
         run: |
           XCODE_VERSION=$(cat versions.json | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["xcode"]);')
-          sudo xcode-select -s /Applications/Xcode_$XCODE_VERSION.app/Contents/Developer
+          if [ -d "/Applications/Xcode_$XCODE_VERSION.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_$XCODE_VERSION.app/Contents/Developer
+          else
+            FALLBACK=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
+            echo "Xcode $XCODE_VERSION not installed, falling back to $FALLBACK"
+            sudo xcode-select -s "$FALLBACK/Contents/Developer"
+          fi
+          xcodebuild -version
 
       - name: Create canonical source directory
         run: |
