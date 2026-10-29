@@ -508,7 +508,7 @@ final class SDLockViewController: UIViewController {
         self.view.addSubview(demoButton)
 
         let tagLabel = UILabel()
-        tagLabel.text = "build " + sdBuildTag
+        tagLabel.text = "XOIO"
         tagLabel.font = UIFont.systemFont(ofSize: 10.0, weight: .medium)
         tagLabel.textColor = UIColor.white.withAlphaComponent(0.35)
         tagLabel.translatesAutoresizingMaskIntoConstraints = false

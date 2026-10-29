@@ -410,14 +410,17 @@ public func makeDefaultDayPresentationTheme(extendingThemeReference: Presentatio
     )
     
     let rootNavigationBar = PresentationThemeRootNavigationBar(
-        buttonColor: UIColor(rgb: 0xFFFFFF),
-        disabledButtonColor: UIColor(rgb: 0xFFFFFF, alpha: 0.4),
-        primaryTextColor: UIColor(rgb: 0xFFFFFF),
-        secondaryTextColor: UIColor(rgb: 0xFFFFFF, alpha: 0.7),
-        controlColor: UIColor(rgb: 0xFFFFFF, alpha: 0.85),
-        accentTextColor: UIColor(rgb: 0xFFFFFF),
-        blurredBackgroundColor: UIColor(rgb: 0x3F4A54, alpha: 0.96),
-        opaqueBackgroundColor: UIColor(rgb: 0x3F4A54),
+        // SD: day mode chrome is light, so the navigation bar needs dark chrome text.
+        // White on #E9EFF3 (list background) was invisible - settings page titles, the
+        // chat list header and nav bar buttons all disappeared.
+        buttonColor: UIColor(rgb: 0x1B2A33),
+        disabledButtonColor: UIColor(rgb: 0x1B2A33, alpha: 0.35),
+        primaryTextColor: UIColor(rgb: 0x1B2A33),
+        secondaryTextColor: UIColor(rgb: 0x1B2A33, alpha: 0.6),
+        controlColor: UIColor(rgb: 0x1B2A33, alpha: 0.7),
+        accentTextColor: UIColor(rgb: 0x1B2A33),
+        blurredBackgroundColor: UIColor(rgb: 0xF7FAFC, alpha: 0.96),
+        opaqueBackgroundColor: UIColor(rgb: 0xF7FAFC),
         separatorColor: UIColor(rgb: 0xc8c7cc),
         badgeBackgroundColor: UIColor(rgb: 0xff3b30),
         badgeStrokeColor: UIColor(rgb: 0xff3b30),
