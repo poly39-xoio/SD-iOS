@@ -501,8 +501,12 @@ final class SDLockViewController: UIViewController {
 
         let demoButton = UIButton(type: .system)
         demoButton.setTitle(SDStrings.t("demo"), for: .normal)
-        demoButton.setTitleColor(UIColor.white.withAlphaComponent(0.75), for: .normal)
-        demoButton.titleLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .medium)
+        demoButton.setTitleColor(.white, for: .normal)
+        demoButton.layer.borderWidth = 1.0
+        demoButton.layer.borderColor = UIColor.white.withAlphaComponent(0.45).cgColor
+        demoButton.layer.cornerRadius = 12.0
+        demoButton.contentEdgeInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
+        demoButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
         demoButton.translatesAutoresizingMaskIntoConstraints = false
         demoButton.addTarget(self, action: #selector(self.showDemo), for: .touchUpInside)
         self.view.addSubview(demoButton)
@@ -520,7 +524,7 @@ final class SDLockViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             demoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            demoButton.bottomAnchor.constraint(equalTo: keypad.topAnchor, constant: -18.0),
+            demoButton.bottomAnchor.constraint(equalTo: keypad.topAnchor, constant: -30.0),
         self.titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 80.0),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 24.0),
             self.titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24.0),
